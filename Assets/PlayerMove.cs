@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public float power = 1;
+	public float JumpPower = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	Rigidbody2D rb;
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		rb = gameObject.GetComponent<Rigidbody2D>();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+		var pos = transform.position;
+
+		if(Input.GetKey(KeyCode.LeftArrow))
+		{
+			pos.x -= power;
+		}
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			pos.x += power;
+		}
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			rb.velocity += new Vector2(0, JumpPower);
+		}
+
+		transform.position = pos;
+	}
 }
