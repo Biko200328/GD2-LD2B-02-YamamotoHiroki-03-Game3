@@ -5,11 +5,13 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
 	public bool isOn;
+	PlayerMove playerMove;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		GameObject player = GameObject.Find("Player");
+		playerMove = player.GetComponent<PlayerMove>();
 	}
 
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class HitBox : MonoBehaviour
 		if(collision.gameObject.tag == "floor")
 		{
 			isOn = true;
+			//if(playerMove.isDrop == true)playerMove.isDrop = false;
 		}
 	}
 
@@ -31,6 +34,7 @@ public class HitBox : MonoBehaviour
 		if (collision.gameObject.tag == "floor")
 		{
 			isOn = true;
+			if (playerMove.isDrop == true) playerMove.isDrop = false;
 		}
 	}
 
