@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -31,24 +32,9 @@ public class PlayerMove : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		var pos = transform.position;
-
-		// x軸移動
-		// ドロップしていない間は移動できる
-		if(isDrop == false)
-		{
-			if (Input.GetKey(KeyCode.LeftArrow))
-			{
-				pos.x -= power;
-			}
-			if (Input.GetKey(KeyCode.RightArrow))
-			{
-				pos.x += power;
-			}
-		}
 
 		// 床についてる時のみジャンプ
-		if(Input.GetKeyDown(KeyCode.Space) && hitBox.isOn == true)
+		if (Input.GetKeyDown(KeyCode.Space) && hitBox.isOn == true)
 		{
 			rb.velocity += new Vector2(0, JumpPower);
 			isJump = true;
@@ -62,6 +48,26 @@ public class PlayerMove : MonoBehaviour
 		}
 
 
-		transform.position = pos;
+
+	}
+
+	private void FixedUpdate()
+	{
+		if (isDrop) { return; }
+		var pos = rb.position;
+
+		if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			pos.x -= power;
+		}
+		else if (Input.GetKey(KeyCode.RightArrow))
+		{
+			pos.x += power;
+		}
+		else
+		{
+			return;
+		}
+		rb.position = (pos);
 	}
 }
