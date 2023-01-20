@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
 
 	public bool isDrop;
 	public bool isJump;
-	Rigidbody2D rb;
+	public Rigidbody2D rb;
 
 	HitBox hitBox;
 

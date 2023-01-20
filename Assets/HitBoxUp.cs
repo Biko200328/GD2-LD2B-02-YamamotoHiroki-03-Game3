@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HitBoxUp : MonoBehaviour
 {
+	[SerializeField] GameObject particle;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -21,8 +23,7 @@ public class HitBoxUp : MonoBehaviour
 		if (collision.gameObject.tag == "material")
 		{
 			Destroy(collision.gameObject);
-			//collision.gameObject.SetActive(false);
-			//if(playerMove.isDrop == true)playerMove.isDrop = false;
+			Instantiate(particle, collision.gameObject.transform.position, Quaternion.identity);
 		}
 	}
 
