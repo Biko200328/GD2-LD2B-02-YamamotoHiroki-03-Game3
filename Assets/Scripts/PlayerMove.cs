@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
 	public float DropPower;
 
 	public bool isDrop;
-
+	public bool isJump;
 	Rigidbody2D rb;
 
 	HitBox hitBox;
@@ -51,6 +51,7 @@ public class PlayerMove : MonoBehaviour
 		if(Input.GetKeyDown(KeyCode.Space) && hitBox.isOn == true)
 		{
 			rb.velocity += new Vector2(0, JumpPower);
+			isJump = true;
 		}
 
 		// ジャンプ中もう一度JumpKeyを押すことでドロップできる
