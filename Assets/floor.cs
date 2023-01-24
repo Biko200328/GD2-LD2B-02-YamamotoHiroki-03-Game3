@@ -7,9 +7,10 @@ using UnityEngine.Tilemaps;
 public class floor : MonoBehaviour
 {
 	FloorManager floorManager;
-	public TilemapRenderer renderer1;
-	public TilemapRenderer renderer2;
-	public TilemapRenderer renderer3;
+	public SpriteRenderer spriteRenderer;
+	public Sprite Sprite1;
+	public Sprite Sprite2;
+	public Sprite Sprite3;
 
 	// Start is called before the first frame update
 	void Start()
@@ -23,15 +24,15 @@ public class floor : MonoBehaviour
 	{
 		if (floorManager.time <= floorManager.keepTime / 4)
 		{
-			this.gameObject.GetComponent<TilemapRenderer>().material = renderer1.material;
+			spriteRenderer.sprite = Sprite3;
 		}
 		else if (floorManager.time <= floorManager.keepTime / 2)
 		{
-
+			spriteRenderer.sprite = Sprite2;
 		}
 		else
 		{
-
+			spriteRenderer.sprite = Sprite1;
 		}
 	}
 }
