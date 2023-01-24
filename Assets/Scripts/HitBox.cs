@@ -26,6 +26,10 @@ public class HitBox : MonoBehaviour
 		{
 			isOn = true;
 			if (playerMove.isJump == true) playerMove.isJump = false;
+			if (playerMove.isDrop == true)
+			{
+
+			}
 		}
 	}
 
@@ -45,10 +49,10 @@ public class HitBox : MonoBehaviour
 		{
 			isOn = false;
 		}
-		if (collision.gameObject.tag == "material" && playerMove.isJump == true)
-		{
-			collision.gameObject.transform.Translate(0,-1,0);
-			//collision.gameObject.SetActive(false);
-		}
+		//if (collision.gameObject.tag == "material" && playerMove.isJump == true)
+		//{
+		//	collision.gameObject.transform.Translate(0,-1,0);
+		//	//collision.gameObject.SetActive(false);
+		//}
 	}
 }
