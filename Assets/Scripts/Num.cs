@@ -7,18 +7,27 @@ public class Num : MonoBehaviour
 	GameObject player;
 	private Vector3 offset;
 
+	GameManager gameManager;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		player = GameObject.Find("Player");
 		transform.position = player.transform.position;
 		offset = transform.position - player.transform.position;
+
+		GameObject managerObj = GameObject.Find("GameManager");
+		gameManager = managerObj.GetComponent<GameManager>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		
+		if(gameManager.ItemCount <= 0)
+		{
+			Destroy(this.gameObject);
+			gameManager.isCreate = false;
+		}
 	}
 	
 

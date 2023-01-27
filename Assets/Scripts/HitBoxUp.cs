@@ -26,7 +26,7 @@ public class HitBoxUp : MonoBehaviour
 		{
 			Destroy(collision.gameObject);
 			Instantiate(particle, collision.gameObject.transform.position, Quaternion.identity);
-			gameManager.ItemCount += 1;
+			gameManager.AddItemCount();
 		}
 	}
 
