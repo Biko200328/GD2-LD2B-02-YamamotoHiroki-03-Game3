@@ -26,10 +26,15 @@ public class HitBox : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		// ジャンプリセット
 		if(collision.gameObject.tag == "floor" || collision.gameObject.tag == "material")
 		{
 			isOn = true;
 			if (playerMove.isJump == true) playerMove.isJump = false;
+		}
+		// 床の修復
+		if (collision.gameObject.tag == "floor")
+		{
 			if (playerMove.isDrop == true)
 			{
 				gameManager.Repair();

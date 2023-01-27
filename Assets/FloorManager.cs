@@ -7,6 +7,7 @@ public class FloorManager : MonoBehaviour
 	public float time;
 	public float keepTime;
 	public bool isBreak;
+	public GameObject floor;
 
 	// Start is called before the first frame update
 	void Start()
@@ -21,6 +22,7 @@ public class FloorManager : MonoBehaviour
 		if(time < 0)
 		{
 			isBreak = true;
+			Destroy(floor);
 		}
 	}
 }
