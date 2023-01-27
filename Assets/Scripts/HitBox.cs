@@ -33,15 +33,42 @@ public class HitBox : MonoBehaviour
 			isOn = true;
 			if (playerMove.isJump == true) playerMove.isJump = false;
 		}
-		// °‚ÌC•œ
-		if (collision.gameObject.tag == "floor")
+		if(playerMove.isDrop == true)
 		{
-			if (playerMove.isDrop == true && gameManager.ItemCount >= 1)
+			// °‚ÌC•œ
+			if (collision.gameObject.tag == "floor" && gameManager.ItemCount >= 1)
 			{
 				gameManager.Repair();
-				Instantiate(particle, transform.position,Quaternion.identity);
+				Instantiate(particle, transform.position, Quaternion.identity);
+			}
+			// ŽÔ‚ð”j‰ó
+			else if(collision.gameObject.tag == "car")
+			{
+				if (playerMove.isDrop == true)
+				{
+					gameManager.Failure();
+					Destroy(collision.gameObject);
+				}
 			}
 		}
+		//// °‚ÌC•œ
+		//if (collision.gameObject.tag == "floor")
+		//{
+		//	if (playerMove.isDrop == true && gameManager.ItemCount >= 1)
+		//	{
+		//		gameManager.Repair();
+		//		Instantiate(particle, transform.position,Quaternion.identity);
+		//	}
+		//}
+		//// ŽÔ‚Æ‚Ì“–‚½‚è”»’è
+		//if(collision.gameObject.tag == "car")
+		//{
+		//	if (playerMove.isDrop == true)
+		//	{
+		//		gameManager.Failure();
+		//		Destroy(collision.gameObject);
+		//	}
+		//}
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)

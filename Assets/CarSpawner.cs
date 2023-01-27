@@ -13,12 +13,23 @@ public class CarSpawner : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		keeptimer = timer;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if(isCreate == false)timer -= Time.deltaTime;
 
+		if(timer <= 0)
+		{
+			isCreate = true;
+		}
+		if(isCreate == true)
+		{
+			Instantiate(carPrefab, transform.position, Quaternion.identity);
+			timer = keeptimer;
+			isCreate = false;
+		}
 	}
 }

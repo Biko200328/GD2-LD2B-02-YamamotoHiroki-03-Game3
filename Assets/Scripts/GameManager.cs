@@ -70,4 +70,13 @@ public class GameManager : MonoBehaviour
 			Destroy(numObject);
 		}
 	}
+
+	public void Failure()
+	{
+		ItemCount = 0;
+		if (numObject != null)
+		{
+			Destroy(numObject);
+		}
+	}
 }
