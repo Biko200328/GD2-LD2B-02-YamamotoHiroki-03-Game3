@@ -444,6 +444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemCount: 0
+  num: {fileID: 1878179295}
+  numObj: {fileID: 1878179292}
 --- !u!4 &67389695
 Transform:
   m_ObjectHideFlags: 0
@@ -5387,12 +5389,12 @@ GameObject:
   - component: {fileID: 1878179294}
   - component: {fileID: 1878179293}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: num
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1878179293
 Rigidbody2D:
   serializedVersion: 4

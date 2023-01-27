@@ -68,6 +68,16 @@ public class PlayerMove : MonoBehaviour
 		{
 			return;
 		}
+
+		if(pos.x >= 19)
+		{
+			pos.x = -18.5f;
+		}
+		if (pos.x <= -19)
+		{
+			pos.x = 18.5f;
+		}
+
 		rb.position = (pos);
 	}
 }
