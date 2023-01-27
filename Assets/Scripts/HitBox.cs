@@ -7,6 +7,7 @@ public class HitBox : MonoBehaviour
 	public bool isOn;
 	PlayerMove playerMove;
 	GameManager gameManager;
+	[SerializeField] GameObject particle;
 
 	// Start is called before the first frame update
 	void Start()
@@ -35,9 +36,10 @@ public class HitBox : MonoBehaviour
 		// °‚ÌC•œ
 		if (collision.gameObject.tag == "floor")
 		{
-			if (playerMove.isDrop == true)
+			if (playerMove.isDrop == true && gameManager.ItemCount >= 1)
 			{
 				gameManager.Repair();
+				Instantiate(particle, transform.position,Quaternion.identity);
 			}
 		}
 	}
