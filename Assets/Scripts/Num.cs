@@ -5,18 +5,14 @@ using UnityEngine;
 public class Num : MonoBehaviour
 {
 	GameObject player;
-	Rigidbody2D rb;
-	Rigidbody2D playerRb;
+	private Vector3 offset;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		player = GameObject.Find("Player");
-		playerRb = player.GetComponent<Rigidbody2D>();
-
-		// Rigidbody‚ðŽæ“¾
-		rb = gameObject.GetComponent<Rigidbody2D>();
-		
+		transform.position = player.transform.position;
+		offset = transform.position - player.transform.position;
 	}
 
 	// Update is called once per frame
@@ -24,13 +20,10 @@ public class Num : MonoBehaviour
 	{
 		
 	}
+	
 
-	private void FixedUpdate()
+	void LateUpdate()
 	{
-		var n =playerRb.position - rb.position;
-
-		n = n.normalized;
-
-		rb.position += n * 0.15f;
+		transform.position = Vector2.Lerp(transform.position, player.transform.position + offset, 6.0f * Time.deltaTime);
 	}
 }
