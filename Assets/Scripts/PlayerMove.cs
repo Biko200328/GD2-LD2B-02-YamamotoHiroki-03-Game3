@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -14,6 +13,11 @@ public class PlayerMove : MonoBehaviour
 	public Rigidbody2D rb;
 
 	HitBox hitBox;
+
+	//public SpriteRenderer spriteRenderer;
+	//public Sprite Sprite1;
+	//public Sprite Sprite2;
+	//public Sprite Sprite3;
 
 	// Start is called before the first frame update
 	void Start()
@@ -47,22 +51,24 @@ public class PlayerMove : MonoBehaviour
 			isDrop = true;
 		}
 
-
-
 	}
 
 	private void FixedUpdate()
 	{
 		if (isDrop) { return; }
+
 		var pos = rb.position;
+		Vector3 scale = transform.localScale;
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
 			pos.x -= power;
+			scale.x = -1;
 		}
 		else if (Input.GetKey(KeyCode.RightArrow))
 		{
 			pos.x += power;
+			scale.x = 1;
 		}
 		else
 		{
@@ -79,5 +85,6 @@ public class PlayerMove : MonoBehaviour
 		}
 
 		rb.position = (pos);
+		transform.localScale = scale;
 	}
 }

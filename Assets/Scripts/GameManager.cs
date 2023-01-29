@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -22,7 +21,7 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		Screen.SetResolution(1920, 1080, false);
+		Screen.SetResolution(1024, 864, false);
 		Application.targetFrameRate = 60;
 
 		player = GameObject.Find("Player");

@@ -45,3 +45,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: floor
+    uniqueID: 3896694751
+    locked: 0
+  - name: car
+    uniqueID: 3504189299
+    locked: 0
+  - name: player
+    uniqueID: 477577169
+    locked: 0
