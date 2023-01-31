@@ -38,6 +38,7 @@ public class HitBox : MonoBehaviour
 			if (collision.gameObject.tag == "floor" && gameManager.ItemCount >= 1)
 			{
 				gameManager.Repair();
+				gameManager.CreateMap();
 				Instantiate(particle, transform.position, Quaternion.identity);
 			}
 			// ŽÔ‚ð”j‰ó

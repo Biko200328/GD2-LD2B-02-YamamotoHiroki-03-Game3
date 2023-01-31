@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -73,6 +74,22 @@ public class GameManager : MonoBehaviour
 			Destroy(numObject);
 			Destroy(mapObject);
 		}
+	}
+
+	public void CreateMap()
+	{
+		// 1~2‚ÌŠÔ‚Ì”š‚ğƒ‰ƒ“ƒ_ƒ€‚É¶¬
+
+		int Num = Random.Range(1, 3);
+		switch (Num)
+		{
+			case 1:
+				mapObject = Instantiate(mapPrefab1, transform.position, Quaternion.identity);
+				break;
+			case 2:
+				mapObject = Instantiate(mapPrefab2, transform.position, Quaternion.identity);
+				break;
+		}	
 	}
 
 	public void Failure()
