@@ -31,7 +31,6 @@ public class HitBox : MonoBehaviour
 		if(collision.gameObject.tag == "floor" || collision.gameObject.tag == "material")
 		{
 			isOn = true;
-			if (playerMove.isJump == true) playerMove.isJump = false;
 		}
 		if(playerMove.isDrop == true)
 		{
@@ -77,7 +76,6 @@ public class HitBox : MonoBehaviour
 		{
 			isOn = true;
 			if (playerMove.isDrop == true) playerMove.isDrop = false;
-			if(playerMove.isJump == true) playerMove.isJump = false;
 		}
 	}
 

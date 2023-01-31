@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
 
 	SceneController sceneController;
 
+	public GameObject mapObject;
+	public GameObject mapPrefab1;
+	public GameObject mapPrefab2;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -30,6 +34,8 @@ public class GameManager : MonoBehaviour
 
 		GameObject camera = GameObject.Find("Main Camera");
 		sceneController = camera.GetComponent<SceneController>();
+
+		mapObject = Instantiate(mapPrefab1, transform.position, Quaternion.identity);
 	}
 
 	// Update is called once per frame
@@ -45,14 +51,12 @@ public class GameManager : MonoBehaviour
 	{
 		if (ItemCount == 0)
 		{
-			 numObject = Instantiate(numPrefab, player.transform.position, Quaternion.identity);
+			numObject = Instantiate(numPrefab, player.transform.position, Quaternion.identity);
 			numText = numObject.GetComponent<TextMesh>();
 			isCreate = true;
 		}
 		ItemCount++;
 		numText.text = "" + ItemCount;
-
-
 	}
 
 	//public int GetItemCout()
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
 		if (numObject != null)
 		{
 			Destroy(numObject);
+			Destroy(mapObject);
 		}
 	}
 
