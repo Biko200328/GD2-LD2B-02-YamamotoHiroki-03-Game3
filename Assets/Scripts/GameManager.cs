@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 	public GameObject mapPrefab1;
 	public GameObject mapPrefab2;
 
+	int score;
+	public Text scoreText;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -46,6 +49,11 @@ public class GameManager : MonoBehaviour
 		{
 			sceneController.sceneChange("GameScene");
 		}
+
+		if(floorManager.isEnd)
+		{
+			sceneController.sceneChange("ResultScene");
+		}
 	}
 
 	public void AddItemCount(int num = 1)
@@ -67,8 +75,23 @@ public class GameManager : MonoBehaviour
 
 	public void Repair()
 	{
-		floorManager.time += ItemCount * 10;
+		if(ItemCount >= 20)
+		{
+			score += ItemCount * 10;
+		}
+		else if (ItemCount >= 10)
+		{
+			score += ItemCount * 2;
+		}
+		else
+		{
+			score += ItemCount;
+		}
+		floorManager.time += ItemCount / 2;
 		ItemCount = 0;
+
+		scoreText.text = "" + score;
+
 		if (numObject != null)
 		{
 			Destroy(numObject);

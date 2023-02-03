@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class HitBox : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class HitBox : MonoBehaviour
 	PlayerMove playerMove;
 	GameManager gameManager;
 	[SerializeField] GameObject particle;
+
+	[SerializeField] GameObject good;
+	[SerializeField] GameObject excellent;
+	[SerializeField] float time = 1;
+	float keepTime;
+	bool isJudge;
+	int itemCount;
+
+	Vector3 pos;
 
 	// Start is called before the first frame update
 	void Start()
@@ -17,12 +27,36 @@ public class HitBox : MonoBehaviour
 
 		GameObject gameObject = GameObject.Find("GameManager");
 		gameManager = gameObject.GetComponent<GameManager>();
+
+		keepTime = time;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if(isJudge == true)
+		{
+			time -= Time.deltaTime;
+			if(time <= 0)
+			{
+				isJudge = false;
+				time = keepTime;
+				good.SetActive(false);
+				excellent.SetActive(false);
+			}
+		}
 
+		if(isJudge)
+		{
+			if (itemCount >= 20)
+			{
+				excellent.SetActive(true);
+			}
+			else if (itemCount >= 10)
+			{
+				good.SetActive(true);
+			}
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -37,18 +71,22 @@ public class HitBox : MonoBehaviour
 			// è∞ÇÃèCïú
 			if (collision.gameObject.tag == "floor" && gameManager.ItemCount >= 1)
 			{
+				itemCount = gameManager.ItemCount;
+				pos = transform.position;
 				gameManager.Repair();
 				gameManager.CreateMap();
+				if (isJudge == false)isJudge = true;
 				Instantiate(particle, transform.position, Quaternion.identity);
+			}
+			if (collision.gameObject.tag == "material" && gameManager.ItemCount >= 1)
+			{
+				gameManager.Failure();
 			}
 			// é‘ÇîjâÛ
 			else if(collision.gameObject.tag == "car")
 			{
-				if (playerMove.isDrop == true)
-				{
-					gameManager.Failure();
-					Destroy(collision.gameObject);
-				}
+				gameManager.Failure();
+				Destroy(collision.gameObject);
 			}
 		}
 		//// è∞ÇÃèCïú

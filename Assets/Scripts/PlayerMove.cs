@@ -43,10 +43,13 @@ public class PlayerMove : MonoBehaviour
 		}
 
 		// ジャンプ中もう一度JumpKeyを押すことでドロップできる
-		if (Input.GetKeyDown(KeyCode.Space) && hitBox.isOn == false && isDrop == false)
+		if (Input.GetKey("down") || Input.GetKey(KeyCode.S))
 		{
-			rb.velocity -= new Vector2(0, DropPower);
-			isDrop = true;
+			if (Input.GetKeyDown(KeyCode.Space) && hitBox.isOn == false && isDrop == false)
+			{
+				rb.velocity -= new Vector2(0, DropPower);
+				isDrop = true;
+			}
 		}
 
 	}
@@ -58,12 +61,12 @@ public class PlayerMove : MonoBehaviour
 		var pos = rb.position;
 		Vector3 scale = transform.localScale;
 
-		if (Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
 		{
 			pos.x -= power;
 			scale.x = -1;
 		}
-		else if (Input.GetKey(KeyCode.RightArrow))
+		else if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
 		{
 			pos.x += power;
 			scale.x = 1;

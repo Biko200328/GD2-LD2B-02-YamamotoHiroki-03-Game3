@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FloorManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class FloorManager : MonoBehaviour
 	public float keepTime;
 	public bool isBreak;
 	public GameObject floor;
+	public Text text;
+	public bool isEnd;
 
 	// Start is called before the first frame update
 	void Start()
@@ -22,7 +25,9 @@ public class FloorManager : MonoBehaviour
 		if(time < 0)
 		{
 			isBreak = true;
+			isEnd = true;
 			Destroy(floor);
 		}
+		text.text = "‘Ï‹v’l(Žc‚èŽžŠÔ) : " + time;
 	}
 }
