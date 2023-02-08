@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 	public GameObject mapPrefab1;
 	public GameObject mapPrefab2;
 
-	int score;
+	public static int score;
 	public Text scoreText;
 
 	public AudioSource audio;
