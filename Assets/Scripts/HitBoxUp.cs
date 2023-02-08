@@ -24,6 +24,7 @@ public class HitBoxUp : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "material")
 		{
+			gameManager.PlaybrokeSE();
 			Destroy(collision.gameObject);
 			Instantiate(particle, collision.gameObject.transform.position, Quaternion.identity);
 			gameManager.AddItemCount();

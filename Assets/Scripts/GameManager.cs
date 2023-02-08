@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
 	int score;
 	public Text scoreText;
 
+	public AudioSource audio;
+
+	public AudioSource brokeSE;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -75,6 +79,8 @@ public class GameManager : MonoBehaviour
 
 	public void Repair()
 	{
+		audio.Play();
+
 		if(ItemCount >= 20)
 		{
 			score += ItemCount * 10;
@@ -122,5 +128,10 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(numObject);
 		}
+	}
+
+	public void PlaybrokeSE()
+	{
+		brokeSE.Play();
 	}
 }

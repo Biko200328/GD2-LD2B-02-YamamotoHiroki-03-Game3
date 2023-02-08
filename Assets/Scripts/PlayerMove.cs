@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
 
 	HitBox hitBox;
 
+	public AudioSource jumpSE;
+
 	//public SpriteRenderer spriteRenderer;
 	//public Sprite Sprite1;
 	//public Sprite Sprite2;
@@ -39,6 +41,7 @@ public class PlayerMove : MonoBehaviour
 		// °‚É‚Â‚¢‚Ä‚é‚Ì‚İƒWƒƒƒ“ƒv
 		if (Input.GetKeyDown(KeyCode.Space) && hitBox.isOn == true)
 		{
+			jumpSE.Play();
 			rb.velocity += new Vector2(0, JumpPower);
 		}
 
