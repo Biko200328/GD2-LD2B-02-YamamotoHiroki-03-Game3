@@ -64,12 +64,12 @@ public class PlayerMove : MonoBehaviour
 		if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
 		{
 			pos.x -= power;
-			scale.x = -1;
+			scale.x = -2;
 		}
 		else if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
 		{
 			pos.x += power;
-			scale.x = 1;
+			scale.x = 2;
 		}
 		else
 		{
