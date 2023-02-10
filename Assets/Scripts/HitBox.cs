@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; // ÉRÉåèdóv
 using UnityEngine.SocialPlatforms.Impl;
 
 public class HitBox : MonoBehaviour
@@ -28,6 +29,7 @@ public class HitBox : MonoBehaviour
 		GameObject gameObject = GameObject.Find("GameManager");
 		gameManager = gameObject.GetComponent<GameManager>();
 
+
 		keepTime = time;
 	}
 
@@ -41,8 +43,11 @@ public class HitBox : MonoBehaviour
 			{
 				isJudge = false;
 				time = keepTime;
-				good.SetActive(false);
-				excellent.SetActive(false);
+				if(good != null)
+				{
+					good.SetActive(false);
+					excellent.SetActive(false);
+				}
 			}
 		}
 
@@ -50,11 +55,17 @@ public class HitBox : MonoBehaviour
 		{
 			if (itemCount >= 20)
 			{
-				excellent.SetActive(true);
+				if (excellent != null)
+				{
+					excellent.SetActive(true);
+				}
 			}
 			else if (itemCount >= 10)
 			{
-				good.SetActive(true);
+				if (good != null)
+				{
+					good.SetActive(true);
+				}
 			}
 		}
 	}
@@ -71,8 +82,8 @@ public class HitBox : MonoBehaviour
 			// è∞ÇÃèCïú
 			if (collision.gameObject.tag == "floor" && gameManager.ItemCount >= 1)
 			{
-				itemCount = gameManager.ItemCount;
 				pos = transform.position;
+				itemCount = gameManager.ItemCount;
 				gameManager.Repair();
 				gameManager.CreateMap();
 				if (isJudge == false)isJudge = true;
@@ -89,24 +100,6 @@ public class HitBox : MonoBehaviour
 				Destroy(collision.gameObject);
 			}
 		}
-		//// è∞ÇÃèCïú
-		//if (collision.gameObject.tag == "floor")
-		//{
-		//	if (playerMove.isDrop == true && gameManager.ItemCount >= 1)
-		//	{
-		//		gameManager.Repair();
-		//		Instantiate(particle, transform.position,Quaternion.identity);
-		//	}
-		//}
-		//// é‘Ç∆ÇÃìñÇΩÇËîªíË
-		//if(collision.gameObject.tag == "car")
-		//{
-		//	if (playerMove.isDrop == true)
-		//	{
-		//		gameManager.Failure();
-		//		Destroy(collision.gameObject);
-		//	}
-		//}
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)
@@ -114,7 +107,7 @@ public class HitBox : MonoBehaviour
 		if (collision.gameObject.tag == "floor" || collision.gameObject.tag == "material")
 		{
 			isOn = true;
-			if (playerMove.isDrop == true) playerMove.isDrop = false;
+			if (playerMove.isDrop) playerMove.isDrop = false;
 		}
 	}
 

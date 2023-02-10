@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
 	public static int score;
 	public Text scoreText;
 
-	public AudioSource audio;
+	public AudioSource repair;
 
 	public AudioSource brokeSE;
 
@@ -44,20 +45,28 @@ public class GameManager : MonoBehaviour
 		GameObject camera = GameObject.Find("Main Camera");
 		sceneController = camera.GetComponent<SceneController>();
 
-		mapObject = Instantiate(mapPrefab1, transform.position, Quaternion.identity);
+		if(SceneManager.GetActiveScene().name == "GameScene")
+		{
+			mapObject = Instantiate(mapPrefab1, transform.position, Quaternion.identity);
+		}
+
+		DontDestroyOnLoad(gameObject);
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.R))
+		if (SceneManager.GetActiveScene().name == "GameScene")
 		{
-			sceneController.sceneChange("GameScene");
-		}
+			if (Input.GetKeyDown(KeyCode.R))
+			{
+				sceneController.sceneChange("GameScene");
+			}
 
-		if(floorManager.isEnd)
-		{
-			sceneController.sceneChange("ResultScene");
+			if (floorManager.isEnd)
+			{
+				sceneController.sceneChange("ResultScene");
+			}
 		}
 	}
 
@@ -70,6 +79,7 @@ public class GameManager : MonoBehaviour
 			isCreate = true;
 		}
 		ItemCount++;
+
 		numText.text = "" + ItemCount;
 	}
 
@@ -80,7 +90,7 @@ public class GameManager : MonoBehaviour
 
 	public void Repair()
 	{
-		audio.Play();
+		repair.Play();
 
 		if(ItemCount >= 20)
 		{
@@ -94,10 +104,18 @@ public class GameManager : MonoBehaviour
 		{
 			score += ItemCount;
 		}
-		floorManager.time += ItemCount / 2;
+
+		if (SceneManager.GetActiveScene().name == "GameScene")
+		{
+			floorManager.time += ItemCount / 3;
+		}
+
 		ItemCount = 0;
 
-		scoreText.text = "" + score;
+		if(scoreText != null)
+		{
+			scoreText.text = "" + score;
+		}
 
 		if (numObject != null)
 		{
@@ -110,19 +128,22 @@ public class GameManager : MonoBehaviour
 	{
 		// 1~3ÇÃä‘ÇÃêîéöÇÉâÉìÉ_ÉÄÇ…ê∂ê¨
 
-		int Num = Random.Range(1, 4);
-		switch (Num)
+		if (SceneManager.GetActiveScene().name == "GameScene")
 		{
-			case 1:
-				mapObject = Instantiate(mapPrefab1, transform.position, Quaternion.identity);
-				break;
-			case 2:
-				mapObject = Instantiate(mapPrefab2, transform.position, Quaternion.identity);
-				break;
-			case 3:
-				mapObject = Instantiate(mapPrefab3, transform.position, Quaternion.identity);
-				break;
-		}	
+			int Num = Random.Range(1, 4);
+			switch (Num)
+			{
+				case 1:
+					mapObject = Instantiate(mapPrefab1, transform.position, Quaternion.identity);
+					break;
+				case 2:
+					mapObject = Instantiate(mapPrefab2, transform.position, Quaternion.identity);
+					break;
+				case 3:
+					mapObject = Instantiate(mapPrefab3, transform.position, Quaternion.identity);
+					break;
+			}
+		}
 	}
 
 	public void Failure()
