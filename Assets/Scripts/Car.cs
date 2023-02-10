@@ -11,9 +11,6 @@ public class Car : MonoBehaviour
 	[SerializeField] private float speedMax;
 	Rigidbody2D rb;
 
-	[SerializeField] float timer;
-	bool isCanMove;
-
 
 	// Start is called before the first frame update
 	void Start()
@@ -26,17 +23,11 @@ public class Car : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		timer -= Time.deltaTime;
-		if(timer <= 0)
-		{
-			isCanMove = true;
-		}
+
 	}
 
 	private void FixedUpdate()
 	{
-		if (isCanMove == false) { return; }
-
 		var pos = rb.position;
 
 		pos.x -= speed;

@@ -68,25 +68,24 @@ public class PlayerMove : MonoBehaviour
 		if (Input.GetKey("left") || Input.GetKey(KeyCode.A))
 		{
 			pos.x -= power;
+			if(pos.x <= -18)
+			{
+				pos.x = -18;
+			}
 			scale.x = -2;
 		}
 		else if (Input.GetKey("right") || Input.GetKey(KeyCode.D))
 		{
 			pos.x += power;
+			if (pos.x >= 18)
+			{
+				pos.x = 18;
+			}
 			scale.x = 2;
 		}
 		else
 		{
 			return;
-		}
-
-		if(pos.x >= 19)
-		{
-			pos.x = -18.5f;
-		}
-		if (pos.x <= -19)
-		{
-			pos.x = 18.5f;
 		}
 
 		rb.position = (pos);
