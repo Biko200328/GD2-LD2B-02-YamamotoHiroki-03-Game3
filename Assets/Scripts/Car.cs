@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Profiling;
+using UnityEditor;
 using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-	[SerializeField] private float speed;
+	[SerializeField]private float speed;
+	[SerializeField] private float speedMin;
+	[SerializeField] private float speedMax;
 	Rigidbody2D rb;
 
 	[SerializeField] float timer;
@@ -16,6 +19,8 @@ public class Car : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		speed = (float)Random.Range(1, 5);
+		speed = speed / 10;
 	}
 
 	// Update is called once per frame

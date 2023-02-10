@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+	[Header("ƒeƒXƒg")]
 	public float power;
 	public float JumpPower;
 	public float DropPower;
