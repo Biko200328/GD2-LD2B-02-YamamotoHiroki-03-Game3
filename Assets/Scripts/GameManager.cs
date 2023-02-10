@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 	public GameObject mapObject;
 	public GameObject mapPrefab1;
 	public GameObject mapPrefab2;
+	public GameObject mapPrefab3;
 
 	public static int score;
 	public Text scoreText;
@@ -107,9 +108,9 @@ public class GameManager : MonoBehaviour
 
 	public void CreateMap()
 	{
-		// 1~2‚ÌŠÔ‚Ì”š‚ğƒ‰ƒ“ƒ_ƒ€‚É¶¬
+		// 1~3‚ÌŠÔ‚Ì”š‚ğƒ‰ƒ“ƒ_ƒ€‚É¶¬
 
-		int Num = Random.Range(1, 3);
+		int Num = Random.Range(1, 4);
 		switch (Num)
 		{
 			case 1:
@@ -117,6 +118,9 @@ public class GameManager : MonoBehaviour
 				break;
 			case 2:
 				mapObject = Instantiate(mapPrefab2, transform.position, Quaternion.identity);
+				break;
+			case 3:
+				mapObject = Instantiate(mapPrefab3, transform.position, Quaternion.identity);
 				break;
 		}	
 	}
